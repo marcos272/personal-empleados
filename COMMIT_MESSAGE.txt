@@ -1,0 +1,58 @@
+feat: Implementar capa REST con endpoints de empleados y configuración de Swagger UI
+
+## Cambios Principales
+
+### Capa de Infraestructura - REST API
+- Creados DTOs para transferencia de datos:
+  * InformacionPersonalDTO: datos personales del empleado
+  * InformacionContactoDTO: información de contacto
+  * InformacionLaboralDTO: información laboral y cargos
+  * CrearEmpleadoRequest: request para creación de empleados
+  * EmpleadoResponse: response con datos completos incluyendo historial
+
+- Implementado EmpleadoMapper para conversión bidireccional entre:
+  * Entidades de dominio ↔ DTOs
+  * Soporte para mapeo de historial de cargos
+
+- Creado EmpleadoRecurso (REST Controller) con endpoints completos:
+  * GET /api/empleados - Listar todos los empleados
+  * GET /api/empleados/{id} - Obtener por ID
+  * GET /api/empleados/documento/{documentoIdentidad} - Buscar por documento
+  * GET /api/empleados/estado/{estado} - Filtrar por estado
+  * GET /api/empleados/departamento/{departamento} - Filtrar por departamento
+  * POST /api/empleados - Crear nuevo empleado
+  * PUT /api/empleados/{id}/informacion-personal - Actualizar info personal
+  * PUT /api/empleados/{id}/informacion-contacto - Actualizar info contacto
+  * PUT /api/empleados/{id}/cambiar-cargo - Cambiar cargo
+  * PUT /api/empleados/{id}/estado/{estado} - Cambiar estado
+  * PUT /api/empleados/{id}/desactivar - Desactivar empleado
+  * PUT /api/empleados/{id}/reactivar - Reactivar empleado
+  * PUT /api/empleados/{id}/licencia - Poner en licencia
+  * DELETE /api/empleados/{id} - Eliminar empleado
+
+### Configuración
+- Configurado Swagger UI/OpenAPI en application.properties:
+  * Swagger UI disponible en /swagger-ui
+  * OpenAPI spec en /openapi
+  * Metadatos de la API (título, versión, descripción, contacto)
+  * CORS habilitado para desarrollo
+
+### Documentación
+- Agregado endpoints-empleado.md con:
+  * Descripción completa de todos los endpoints
+  * Arquitectura hexagonal implementada
+  * Capturas de pantalla de Swagger UI
+  * URLs importantes y próximos pasos
+
+## Características Técnicas
+- Anotaciones OpenAPI completas para documentación automática
+- Manejo de errores con códigos HTTP apropiados
+- Validación de datos en capa de servicio
+- Respuestas estructuradas con DTOs
+- Separación clara de responsabilidades (REST → Service → Domain)
+
+## Verificación
+✅ Compilación exitosa sin errores
+✅ Swagger UI accesible y funcional
+✅ Todos los endpoints documentados
+✅ Arquitectura hexagonal mantenida
